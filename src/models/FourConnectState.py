@@ -6,7 +6,8 @@ from utils.constant import CHAR_TO_NUM, NUM_TO_CHAR
 class FourConnectState:
 
   def __init__(self, str = ''):
-    cells = str.split(',')
+    self.str = str.strip('\n')
+    cells = self.str.split(',')
     parsedCells = list(map(lambda cell: CHAR_TO_NUM.get(cell), cells))
     self.state = parsedCells[ : -1]
     self.result = cells[len(cells) - 1]
