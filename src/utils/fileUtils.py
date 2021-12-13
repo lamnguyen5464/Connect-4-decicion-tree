@@ -3,11 +3,8 @@ import os
 def getRootDir():
     return os.getcwd()
 
-def getDatasetFile():
-    return getRootDir() + '/dataset/basedata/all-data.dat'
-
 def getDatasetDir():
-    return getRootDir() + '/dataset/parsingdata'
+    return getRootDir() + '/dataset'
 
 def getAllLineFromDataset(path=''):
     file = open(getDatasetDir() + '/' + path, 'r')

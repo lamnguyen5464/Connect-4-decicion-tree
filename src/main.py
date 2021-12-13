@@ -1,64 +1,82 @@
 from sklearn import tree, metrics
-import numpy
 import matplotlib.pyplot as plt
 import graphviz
 from models.FourConnectState import FourConnectState
 from utils.fileUtils import getAllLineFromDataset
-from utils.constant import DATASET_BASE
+from utils.constant import DATASET_BASE, LABEL_NODES
+
+def process(
+	dataset=DATASET_BASE[2],
+	max_depth=None, 
+	plot_decision_tree=False,
+	plot_confusion_matrix=False):
+
+	print('Running on ' +  str(dataset['ratio']) + ' dataset...',)
+	print('With max_depth = ' + str(max_depth))
+
+	try:
+		training_set = getAllLineFromDataset('/parsingdata/' + dataset["filename_train"])
+		testing_set = getAllLineFromDataset('/parsingdata/' + dataset["filename_test"])
+	except:
+		print('Please run preprocess.sh to prepare dataset')
+		return
 
 
-dataset = DATASET_BASE[0]
+	print("Start training phase...")
 
-print('start...')
+	training_set_states = list(map(lambda str: FourConnectState(str=str), training_set))
 
-training_set = getAllLineFromDataset(dataset["filename_train"])
-testing_set = getAllLineFromDataset(dataset["filename_test"])
+	X_train = list(map(lambda state: state.state, training_set_states))
+	Y_train = list(map(lambda state: state.result, training_set_states))
 
-print("Read file done")
-
-training_set_states = list(map(lambda str: FourConnectState(str=str), training_set))
-testing_set_states = list(map(lambda str: FourConnectState(str=str), testing_set))
-# for s in states:
-# 	s.show()
+	decision_tree = tree.DecisionTreeClassifier(max_depth=max_depth).fit(X_train, Y_train)
+	print('max_depth', decision_tree.tree_.max_depth)
 
 
-X = list(map(lambda state: state.state, training_set_states))
-Y = list(map(lambda state: state.result, training_set_states))
+	print("Start testing phase...")
 
-max_depth = 10
-decision_tree = tree.DecisionTreeClassifier(max_depth=max_depth).fit(X, Y)
-print('max_depth', decision_tree.tree_.max_depth)
+	testing_set_states = list(map(lambda str: FourConnectState(str=str), testing_set))
+	X_test = list(map(lambda state: state.state, testing_set_states))
+	Y_test = list(map(lambda state: state.result, testing_set_states))
 
-res_pred = decision_tree.predict(
-	list(map(lambda state: state.state, testing_set_states))	
-)
-res_truth = (list(map(lambda state: state.result, testing_set_states)))
+	Y_test_pred = decision_tree.predict(X_test)
 
-cnt = 0
-for i in range(0, len(res_pred)):
-	if res_pred[i] == res_truth[i]:
-		cnt = cnt + 1
-	
-print('accuracy', cnt / len(res_pred))
+	accuracy_score = metrics.accuracy_score(Y_test, Y_test_pred)
 
-confusion_matric = metrics.confusion_matrix(res_truth, res_pred, labels=['win', 'loss', 'draw'])
-print(confusion_matric)
+	print('Accuracy: ', accuracy_score)
+
+
+	if plot_confusion_matrix:
+		print('Start plotting confusion matrix phase...')
+		view =  metrics.ConfusionMatrixDisplay.from_predictions(Y_test, Y_test_pred, labels=decision_tree.classes_)
+		plt.savefig('output/' + dataset["filename_confusion_matrix"] + '.png')
 
 
 
 
+	if plot_decision_tree:
+		print('Start plotting tree phase...')
+		dot_data = tree.export_graphviz(
+			filled=True,
+			rounded=True,
+			max_depth=max_depth,
+			feature_names=LABEL_NODES,
+			decision_tree=decision_tree
+		) 
+
+		graph = graphviz.Source(dot_data) 
+		graph.render(filename=dataset["filename_decision_tree"] + "_with_maxdepth_" + str(max_depth),format='png',directory="output")
 
 
-labels = ['A1', ' A2', ' A3', ' A4', ' A5', ' A6', ' A7', ' A8', ' A9', ' A10', ' A11', ' A12', ' A13', ' A14', ' A15', ' A16', ' A17', ' A18', ' A19', ' A20', ' A21', ' A22', ' A23', ' A24', ' A25', ' A26', ' A27', ' A28', ' A29', ' A30', ' A31', ' A32', ' A33', ' A34', ' A35', ' A36', ' A37', ' A38', ' A39', ' A40', ' A41', ' A42']
 
+# configuration
+# dataset = DATASET_BASE[2]
+# max_depth = 10
 
-dot_data = tree.export_graphviz(
-    filled=True,
-	rounded=True,
-	max_depth=max_depth,
-	feature_names=labels,
-	decision_tree=decision_tree
-) 
+for dataset in DATASET_BASE:
+	process(dataset=dataset, plot_confusion_matrix=True)
+	print('\n')
 
-graph = graphviz.Source(dot_data) 
-graph.render(filename="test",format='png',directory="img")
+for i in range(1, 8):
+	process(max_depth=i == 1 and None or i, plot_decision_tree=True)
+	print('\n')
