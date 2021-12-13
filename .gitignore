@@ -1,5 +1,4 @@
 local_env
 __pycache__
-output
 dataset/parsingdata
 .DS_Store

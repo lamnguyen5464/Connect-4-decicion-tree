@@ -67,16 +67,18 @@ def process(
 		graph = graphviz.Source(dot_data) 
 		graph.render(filename=dataset["filename_decision_tree"] + "_with_maxdepth_" + str(max_depth),format='png',directory="output")
 
+	return (accuracy_score)
 
-
-# configuration
-# dataset = DATASET_BASE[2]
-# max_depth = 10
 
 for dataset in DATASET_BASE:
 	process(dataset=dataset, plot_confusion_matrix=True)
 	print('\n')
 
+accuracy_list = []
+
 for i in range(1, 8):
-	process(max_depth=i == 1 and None or i, plot_decision_tree=True)
+	(accuracy_score) = process(max_depth=i == 1 and None or i, plot_decision_tree=True)
+	accuracy_list.append(accuracy_score)
 	print('\n')
+
+print(accuracy_list)
