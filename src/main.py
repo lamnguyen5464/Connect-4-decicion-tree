@@ -3,14 +3,16 @@ import numpy
 import matplotlib.pyplot as plt
 import graphviz
 from models.FourConnectState import FourConnectState
-from utils.fileUtils  import getAllLineFromDataset
+from utils.fileUtils import getAllLineFromDataset
+from utils.constant import DATASET_BASE
+
+
+dataset = DATASET_BASE[0]
 
 print('start...')
 
-all_data = getAllLineFromDataset()
-
-training_set = all_data[ : 800]
-testing_set = all_data[-200: -1]
+training_set = getAllLineFromDataset(dataset["filename_train"])
+testing_set = getAllLineFromDataset(dataset["filename_test"])
 
 print("Read file done")
 
