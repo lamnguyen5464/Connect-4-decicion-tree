@@ -122,7 +122,21 @@ max_depth=36 (auto)
 <img src="https://user-images.githubusercontent.com/45004786/145932067-fc4f618a-267d-49db-bc76-bd402b94ad1a.png" width="1000%"/>
 Confusion matrix:
 
-<img src="https://user-images.githubusercontent.com/45004786/145932664-8e97a1dd-8094-4877-93e0-9291f6db0e07.png" width="50%"/><br/>
+<img src="https://user-images.githubusercontent.com/45004786/146012084-f82baeaa-5e24-4d34-84e5-9930475f937a.png" height="300px"/><br/>
+Classification report:
+
+```
+              precision    recall  f1-score   support
+
+        draw       0.26      0.24      0.25      3957
+        loss       0.65      0.64      0.65      9968
+         win       0.84      0.85      0.85     26610
+
+    accuracy                           0.74     40535
+   macro avg       0.58      0.58      0.58     40535
+weighted avg       0.74      0.74      0.74     40535
+```
+
 Accuracy: 0.7426668311335882
 
 ---
@@ -133,7 +147,21 @@ Decision tree of 60/40 set, max_depth=33 (auto) (click to image for more detail)
 <img src="https://user-images.githubusercontent.com/45004786/145932986-aa5d9674-c1e8-4953-bda3-c8db4c0300bb.png" width="100%"/>
 Confusion matrix:
 
-<img src="https://user-images.githubusercontent.com/45004786/145933238-ec1b3c33-d001-43c2-8720-0b34381cbf49.png" width="50%"/><br/>
+<img src="https://user-images.githubusercontent.com/45004786/146012079-5716cd53-3fa8-4399-9d4b-f125e347c969.png" height="300px"/><br/>
+Classification report:
+
+```
+              precision    recall  f1-score   support
+
+        draw       0.28      0.27      0.28      2637
+        loss       0.67      0.67      0.67      6610
+         win       0.85      0.86      0.85     17776
+
+    accuracy                           0.75     27023
+   macro avg       0.60      0.60      0.60     27023
+weighted avg       0.75      0.75      0.75     27023
+```
+
 Accuracy: 0.7557266032638863
 
 ---
@@ -146,9 +174,22 @@ max_depth=35 (auto)
 <img src="https://user-images.githubusercontent.com/45004786/145933144-d6cbcc8b-0e2d-425f-a6e8-3117e734aacf.png" width="100%"/>
 Confusion matrix:
 
-<img src="https://user-images.githubusercontent.com/45004786/145933235-a252a695-20ef-4f06-9e37-2a3396044fd7.png" width="50%"/><br/>
+<img src="https://user-images.githubusercontent.com/45004786/146012073-a07df503-4ce7-45e1-b7d0-e55edd3b6823.png" height="300px"/><br/>
+Classification report:
 
-Accuracy: 0.7674659561870929
+```
+              precision    recall  f1-score   support
+
+        draw       0.31      0.29      0.30      1293
+        loss       0.69      0.69      0.69      3306
+         win       0.86      0.87      0.87      8913
+
+    accuracy                           0.77     13512
+   macro avg       0.62      0.62      0.62     13512
+weighted avg       0.77      0.77      0.77     13512
+```
+
+Accuracy: 0.7706483126110124
 
 ---
 
@@ -160,9 +201,22 @@ max_depth=38 (auto)
 <img src="https://user-images.githubusercontent.com/45004786/145933123-6db4dfc9-06c5-4418-99a3-c61464c9f3d7.png" width="100%"/>
 Confusion matrix:
 
-<img src="https://user-images.githubusercontent.com/45004786/145933230-1aecb342-3953-4e0b-ac80-5e107f180b07.png" width="50%"/><br/>
+<img src="https://user-images.githubusercontent.com/45004786/146012061-892a9c33-d347-4450-b99d-20dbdea93c87.png" height="300px"/><br/>
+Classification report:
 
-Accuracy: 0.7686500888099467
+```
+              precision    recall  f1-score   support
+
+        draw       0.32      0.30      0.31       634
+        loss       0.70      0.69      0.70      1682
+         win       0.86      0.87      0.86      4440
+
+    accuracy                           0.77      6756
+   macro avg       0.62      0.62      0.62      6756
+weighted avg       0.77      0.77      0.77      6756
+```
+
+Accuracy: 0.7711663706335109
 
 ---
 
@@ -199,7 +253,7 @@ max_depth=7 (click to image for more detail)
 
 ---
 
-## Self grading
+## Summary
 
 | No    | Specifications                             | Scores (%) | Complete (%) |
 | ----- | ------------------------------------------ | ---------- | ------------ |

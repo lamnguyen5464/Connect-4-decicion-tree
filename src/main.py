@@ -29,7 +29,7 @@ def process(
 	X_train = list(map(lambda state: state.state, training_set_states))
 	Y_train = list(map(lambda state: state.result, training_set_states))
 
-	decision_tree = tree.DecisionTreeClassifier(max_depth=max_depth).fit(X_train, Y_train)
+	decision_tree = tree.DecisionTreeClassifier(criterion="entropy",max_depth=max_depth).fit(X_train, Y_train)
 	print('max_depth', decision_tree.tree_.max_depth)
 
 
@@ -48,8 +48,9 @@ def process(
 
 	if plot_confusion_matrix:
 		print('Start plotting confusion matrix phase...')
-		view =  metrics.ConfusionMatrixDisplay.from_predictions(Y_test, Y_test_pred, labels=decision_tree.classes_)
+		metrics.ConfusionMatrixDisplay.from_predictions(Y_test, Y_test_pred, labels=decision_tree.classes_)
 		plt.savefig('output/' + dataset["filename_confusion_matrix"] + '.png')
+		print(metrics.classification_report(Y_test, Y_test_pred, labels=decision_tree.classes_))
 
 
 
@@ -71,13 +72,13 @@ def process(
 
 
 for dataset in DATASET_BASE:
-	process(dataset=dataset, plot_confusion_matrix=True, plot_decision_tree=True)
+	process(dataset=dataset, plot_confusion_matrix=True, plot_decision_tree=False)
 	print('\n')
 
 
-accuracy_list = []
-for i in range(1, 8):
-	(accuracy_score) = process(max_depth=i == 1 and None or i, plot_decision_tree=True)
-	accuracy_list.append(accuracy_score)
-	print('\n')
+# accuracy_list = []
+# for i in range(1, 8):
+# 	(accuracy_score) = process(max_depth=i == 1 and None or i, plot_decision_tree=True)
+# 	accuracy_list.append(accuracy_score)
+# 	print('\n')
 
