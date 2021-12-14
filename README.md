@@ -1,5 +1,10 @@
 # Connect-4 Decision tree
 
+
+![](https://img.shields.io/badge/language-python-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=52c41a)
+![](https://img.shields.io/badge/library-sklearn-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=52c41a)
+
+
 ## Preprocess
 
 ### Dataset-preparing
