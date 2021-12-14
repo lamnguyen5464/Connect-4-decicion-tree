@@ -114,7 +114,7 @@ for dataset in DATASET_BASE:
 	process(dataset=dataset, plot_confusion_matrix=True, plot_decision_tree=True)
 ```
 
-- 40/60 set:
+### 40/60 set:
 
 Decision tree of 40/60 set:
 max_depth=36 (auto)
@@ -141,7 +141,7 @@ Accuracy: 0.7426668311335882
 
 ---
 
-- 60/40 set:
+### 60/40 set:
 
 Decision tree of 60/40 set, max_depth=33 (auto) (click to image for more detail)
 <img src="https://user-images.githubusercontent.com/45004786/145932986-aa5d9674-c1e8-4953-bda3-c8db4c0300bb.png" width="100%"/>
@@ -166,7 +166,7 @@ Accuracy: 0.7557266032638863
 
 ---
 
-- 80/20 set:
+### 80/20 set:
 
 Decision tree of 80/20 set,
 max_depth=35 (auto)
@@ -193,7 +193,7 @@ Accuracy: 0.7706483126110124
 
 ---
 
-- 90/10 set:
+### 90/10 set:
 
 Decision tree of 90/10 set,
 max_depth=38 (auto)
@@ -217,6 +217,10 @@ weighted avg       0.77      0.77      0.77      6756
 ```
 
 Accuracy: 0.7711663706335109
+
+### Comment
+
+when `max_depth` of decision tree is set to `None`, the nodes are expanded until all leaves are pure. That why's all our decision trees were constructed at depth in range from 34 to 38. At this situation, the accuracy would depend too much on the training set. As the larger training set is, the preciser in label that models give.
 
 ---
 
@@ -251,7 +255,9 @@ max_depth=7 (click to image for more detail)
 | --------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | accuracy  | 0.769 | 0.673 | 0.680 | 0.688 | 0.706 | 0.718 | 0.721 |
 
----
+### Comment
+
+In order to achieve the highest accuracy, concentrate on increasing the `max_depth` is suggested. With the higher `max_depth`, the more accuracy we recieve. Obviously, the performance will be significantly influenced
 
 ## Summary
 
