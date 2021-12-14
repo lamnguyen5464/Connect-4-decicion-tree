@@ -1,5 +1,3 @@
-from models.FourConnectResult import FourConnectResult
-from models.CellState import CellState
 from utils.constant import CHAR_TO_NUM, NUM_TO_CHAR
 
 DEFAULT_STR = 'o,x,b,b,b,b,x,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,o,b,b,b,b,b,o,o,x,b,b,b,x,b,b,b,b,b,win'
@@ -38,3 +36,12 @@ class FourConnectState:
 # input = 'b,b,b,b,b,b,b,b,b,b,b,b,o,b,b,b,b,b,x,o,x,o,x,b,x,o,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,draw'
 # a = FourConnectState(str=input)
 # a.show()
+
+# output:
+# [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+# [' ', ' ', ' ', 'x', ' ', ' ', ' ']
+# [' ', ' ', ' ', 'o', ' ', ' ', ' ']
+# [' ', ' ', ' ', 'x', ' ', ' ', ' ']
+# [' ', ' ', ' ', 'o', 'o', ' ', ' ']
+# [' ', ' ', 'o', 'x', 'x', ' ', ' ']
+# draw

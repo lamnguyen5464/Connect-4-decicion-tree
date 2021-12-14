@@ -71,14 +71,13 @@ def process(
 
 
 for dataset in DATASET_BASE:
-	process(dataset=dataset, plot_confusion_matrix=True)
+	process(dataset=dataset, plot_confusion_matrix=True, plot_decision_tree=True)
 	print('\n')
 
-accuracy_list = []
 
+accuracy_list = []
 for i in range(1, 8):
 	(accuracy_score) = process(max_depth=i == 1 and None or i, plot_decision_tree=True)
 	accuracy_list.append(accuracy_score)
 	print('\n')
 
-print(accuracy_list)
