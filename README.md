@@ -2,8 +2,7 @@
 
 ![](https://img.shields.io/badge/language-python-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=52c41a)
 ![](https://img.shields.io/badge/library-sklearn-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=52c41a)
-
-## Please access this [github repository](https://github.com/lamnguyen5464/Connect-4-decicion-tree) for having higher qualified report!
+ 
 
 ---
 
